@@ -21,8 +21,6 @@ export const randomizeQuestions = () => {
   return randomizedArray
 }
 
-
-
 // make function to select one question from the question array to display
 //and remove it from the question array
 
@@ -74,49 +72,49 @@ export const getTriviaRound = () => {
   return roundArray
 }
 
-export const createAnswerArray = () => {
-  let roundArray = getTriviaRound() 
-  roundArray.map((roundQuestion) => {
-    let answerArray = []
-    answerArray.push(roundQuestion.correct)
-    roundQuestion.incorrect.map((incorrectOption) => {
-      answerArray.push(incorrectOption)
-    })
-    return answerArray
-  })
-}
+// export const createAnswerArray = () => {
+//   let roundArray = getTriviaRound() 
+//   roundArray.map((roundQuestion) => {
+//     let answerArray = []
+//     answerArray.push(roundQuestion.correct)
+//     roundQuestion.incorrect.map((incorrectOption) => {
+//       answerArray.push(incorrectOption)
+//     })
+//     return answerArray
+//   })
+// }
 
-export const randomizeAnswerArray = () => {
-  let randomizedAnswerArray = createAnswerArray() 
-  for (let i = randomizedAnswerArray.length - 1; i > 0; i--){
-    const j = Math.floor(Math.random() * i)
-    const temp = randomizedAnswerArray[i]
-    randomizedAnswerArray[i] = randomizedAnswerArray[j]
-    randomizedAnswerArray[j] = temp
-  }
-  return randomizedAnswerArray
-}
+// export const randomizeAnswerArray = () => {
+//   let randomizedAnswerArray = createAnswerArray() 
+//   for (let i = randomizedAnswerArray.length - 1; i > 0; i--){
+//     const j = Math.floor(Math.random() * i)
+//     const temp = randomizedAnswerArray[i]
+//     randomizedAnswerArray[i] = randomizedAnswerArray[j]
+//     randomizedAnswerArray[j] = temp
+//   }
+//   return randomizedAnswerArray
+// }
 
-export const getAnswers = () => {
-  let answerArray = []
-  let selectedQuestion = getQuestion()
-  answerArray.push(selectedQuestion.correct)
-  selectedQuestion.incorrect.map((incorrectOption) => {
-    answerArray.push(incorrectOption)
-  })
-  return answerArray
-}
+// export const getAnswers = () => {
+//   let answerArray = []
+//   let selectedQuestion = getQuestion()
+//   answerArray.push(selectedQuestion.correct)
+//   selectedQuestion.incorrect.map((incorrectOption) => {
+//     answerArray.push(incorrectOption)
+//   })
+//   return answerArray
+// }
 
-export const randomizeAnswers = () => {
-let randomizedAnswers = getAnswers()
-  for (let i = randomizedAnswers.length - 1; i > 0; i--){
-    const j = Math.floor(Math.random() * i)
-    const temp = randomizedAnswers[i]
-    randomizedAnswers[i] = randomizedAnswers[j]
-    randomizedAnswers[j] = temp
-  }
-  return randomizedAnswers
-}
+// export const randomizeAnswers = () => {
+// let randomizedAnswers = getAnswers()
+//   for (let i = randomizedAnswers.length - 1; i > 0; i--){
+//     const j = Math.floor(Math.random() * i)
+//     const temp = randomizedAnswers[i]
+//     randomizedAnswers[i] = randomizedAnswers[j]
+//     randomizedAnswers[j] = temp
+//   }
+//   return randomizedAnswers
+// }
 
 // export const getCorrectAnswer = () => {
 //   correctAnswer = selectedQuestion.correct
@@ -145,3 +143,57 @@ let randomizedAnswers = getAnswers()
 // }
 //make function to set the next question
 
+export const reformatQuestions = () => {
+  let reformattedArray = getTriviaRound().map((question) => {
+    question.answers = []
+    question.answers.push(question.correct)
+      question.incorrect.map((incorrectOption) => {
+        question.answers.push(incorrectOption)
+      })
+    return question
+  })
+  return reformattedArray
+}
+
+// const container = {};
+//     container[question.question] = question.question;
+//     container[question.correct] = question.correct
+
+// const myUsers = [
+//     { name: 'shark', likes: 'ocean' },
+//     { name: 'turtle', likes: 'pond' },
+//     { name: 'otter', likes: 'fish biscuits' }
+// ]
+// const usersByLikes = myUsers.map(item => {
+//     const container = {};
+//     container[item.name] = item.likes;
+//     container.age = item.name.length * 10;
+//     return container;
+// })
+// console.log(usersByLikes);
+
+// original hash:
+// // {question: "question", 
+//     correct: "correct", 
+//     incorrect: 
+//       ["incorrect", "incorrect", "incorrect"]
+//     }
+//revised hash:
+//  {question: "question",
+//    correct: "correct",
+// // answers: 
+//      ["incorrect", "incorrect", "incorrect", "correct"]
+// }
+
+
+// export const createAnswerArray = () => {
+//   let roundArray = getTriviaRound() 
+//   roundArray.map((roundQuestion) => {
+//     let answerArray = []
+//     answerArray.push(roundQuestion.correct)
+//     roundQuestion.incorrect.map((incorrectOption) => {
+//       answerArray.push(incorrectOption)
+//     })
+//     return answerArray
+//   })
+// }
