@@ -3,9 +3,11 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import ModalBody from 'react-bootstrap/ModalBody';
 import ModalFooter from 'react-bootstrap/ModalFooter';
+import Header from './Components/Header';
 import Scores from './Components/Scores';
 import TriviaRound from './Components/TriviaRound';
 import ScoreChart from './Components/ScoreChart';
+import About from './Components/About';
 // import {QUESTIONDATA} from './Services/QuestionData';
 import { createQuizArray, getQuestion } from './Services/QuestionFunctions';
 import { getAllScores } from './Services/PlayersandScoresAPI';
@@ -24,22 +26,33 @@ function App() {
   const [showScores, setShowScores] = useState(false);
   const [showQuiz, setShowQuiz] = useState(false);
   const [showFinalScore, setShowFinalScore] = useState(false);
+  const [showAbout, setShowAbout] = useState(false);
 
 
   const handleShowQuiz = () => {
     setShowQuiz(true);
     setShowFinalScore(false);
     setShowScores(false);
+    setShowAbout(false);
   }
 
   const handleShowFinalScore = () => {
     setShowFinalScore(true);
     setShowQuiz(false);
     setShowScores(false);
+    setShowAbout(false);
   }
 
   const handleShowScores = () => {
     setShowScores(true);
+    setShowQuiz(false);
+    setShowFinalScore(false);
+    setShowAbout(false);
+  }
+
+  const handleShowAbout = () => {
+    setShowAbout(true);
+    setShowScores(false);
     setShowQuiz(false);
     setShowFinalScore(false);
   }
@@ -47,6 +60,8 @@ function App() {
   const handleCloseScores = () => setShowScores(false);
   const handleCloseQuiz = () => setShowQuiz(false);
   const handleCloseFinalScore = () => setShowFinalScore(false);
+  const handleCloseAbout = () => setShowAbout(false);
+
 
   useEffect(() => {
     getAllScores() 
@@ -59,6 +74,7 @@ function App() {
 
   return (
     <div className="App">
+    <Header />
       <Button 
         className="btn-lg" 
         style={{
@@ -140,6 +156,36 @@ function App() {
             width: "100%"
           }} 
           onClick={handleCloseScores}>Close</Button>
+        </ModalFooter>
+      </Modal>
+
+    <Button 
+        className="btn-lg" 
+        style={{
+          backgroundColor: "#ffff1b", 
+          color: "#000080", 
+          fontSize: "20px", 
+          fontWeight: "bold",
+          margin: "2%"
+        }} 
+        type="submit"
+        onClick={handleShowAbout}>About This Quiz?
+      </Button>
+      <Modal show={showAbout} onHide={handleCloseAbout}>
+      <ModalBody>
+      <About></About>
+      </ModalBody>
+        <ModalFooter>
+          <Button 
+            className="close-btn" 
+            color="danger" 
+            style={{ 
+              backgroundColor: "#000080", 
+              color: "#ffff1b", 
+              width: "100%"
+            }} 
+            onClick={handleCloseAbout}>Close
+          </Button>
         </ModalFooter>
       </Modal>
     </div>

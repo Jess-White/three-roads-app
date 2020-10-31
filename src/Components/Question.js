@@ -1,27 +1,23 @@
 import React, {useState, useEffect} from "react";
 import Button from 'react-bootstrap/Button';
 
-export default function Question({question, index, handleAnswerSelected}) {
+export default function Question({question, handleAnswerSelected, handleGetQuestion, handleGetCurrentQuestion}) {
   const [questionNumber, setQuestionNumber] = useState(0)
   const [finalScore, setFinalScore] = useState(0)
   const [scoreCorrect, setScoreCorrect] = useState(0)
   const [scoreIncorrect, setScoreIncorrect] = useState(0)
   const [questionCounter, setQuestionCounter] = useState(0)
+  // const [getNextQuestion, setGetNextQuestion] = useState(0)
+  // const [getQuestion, setGetQuestion] = useState([0])
+  // const [getCurrentQuestionIndex, setGetCurrentQuestionIndex] = useState(0)
+
     // this.checkIndex = this.checkIndex.bind(this);
 
-    function handleQuestionNumber() {
-      setQuestionNumber(questionNumber + 1)
-    }
-
-    function handleFinalScore() {
-      setFinalScore(finalScore + scoreCorrect)
-    }
+  function handleFinalScore() {
+    setFinalScore(finalScore + scoreCorrect)
+  }
 
     function handleViewScores() {
-    }
-
-    function handleQuestionCounter() {
-      setQuestionCounter(questionCounter + 1)
     }
 
   useEffect(() => {
@@ -32,9 +28,6 @@ export default function Question({question, index, handleAnswerSelected}) {
       <div>
       <div>
         <div>
-          <h1>Question Number: {questionCounter}</h1>
-          <h1>{index}</h1>
-          {(index === questionNumber) ? (
           <div>
           <h1>{question.question}</h1>
           <h2 style={{color: "red"}}>{question.correct}</h2>
@@ -51,16 +44,16 @@ export default function Question({question, index, handleAnswerSelected}) {
               </h2>
           )}
           </div>
-          ) : null}
         </div>
-      </div>
-      <div>
-        <button onClick={handleQuestionNumber}>Next Question</button>
       </div>
       <button onClick={handleFinalScore}>See Your Final Score</button>
       <h1>{finalScore}</h1>
       <button onClick={handleViewScores}>See All Final Scores</button>
       </div>
+
+      // {isFinished && <AllDoneAlert></AllDoneAlert>}
+      // {isIncorrect && <IncorrectAlert></IncorrectAlert>}
+      // {isCorrect && <CorrectAlert></CorrectAlert>}}
     );
   };
 
