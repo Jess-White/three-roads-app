@@ -5,6 +5,7 @@ import Modal from 'react-bootstrap/Modal';
 import ModalBody from 'react-bootstrap/ModalBody';
 import ModalFooter from 'react-bootstrap/ModalFooter';
 import Header from './Components/Header';
+import Footer from './Components/Footer';
 import Kitten from './Components/Kitten';
 import TriviaRound from './Components/TriviaRound';
 import About from './Components/About';
@@ -78,7 +79,7 @@ function App() {
         type="submit"
         onClick={handleShowAddPlayer}
       >
-        Nice! More Trivia!
+        I Love Trivia!
       </Button>
       <Button 
         className="btn-lg"
@@ -94,7 +95,7 @@ function App() {
         type="submit"
         onClick={handleShowNoTrivia}
       >
-        No More Trivia! 
+        I Hate Trivia! 
     </Button>
     </div>
     ) : null}
@@ -228,6 +229,7 @@ function App() {
           </Modal>
         </div>
       ) : null}
+      <Footer />
     </div>
   );
 }
