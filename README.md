@@ -1,3 +1,25 @@
+## Welcome to Pumpkin Spice Quiz App!
+
+This trivia quiz app was created in response to a technical challenge. Challenge specs included twenty-one trivia questions in an array-of-hashes format. The challenge was language-agnostic and open-ended, so I decided to build a React app with components for the quiz elements and hooks to manage scoring. 
+
+# React Hooks Documentation: 
+
+https://reactjs.org/docs/hooks-intro.html
+
+This page provides a concise, clear comparison study on using hooks to manage state, and it was helpful when I was figuring out how to build a user input form:
+
+https://rangle.io/blog/simplifying-controlled-inputs-with-hooks/
+
+I used Create React App and customized formatting with React Bootstrap. 
+
+# Installing React Bootstrap:
+
+https://react-bootstrap.github.io/getting-started/introduction/
+
+# Read on for some npm and React basic info:
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

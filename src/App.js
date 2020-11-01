@@ -8,21 +8,11 @@ import Header from './Components/Header';
 import Kitten from './Components/Kitten';
 import TriviaRound from './Components/TriviaRound';
 import About from './Components/About';
-// // import {QUESTIONDATA} from './Services/QuestionData';
-// import { createQuizArray, getQuestion } from './Services/QuestionFunctions';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 function App() {
-  // const [questions, setQuestions] = useState([])
-  // const [randomquestion, setRandomQuestion] = useState([])
-  // const [correct, setCorrect] = useState([])
-  // const [incorrect, setIncorrect] = useState([])
-  // const [finalScore, setFinalScore] = useState([])
-  // const score = useState({username: '', correct: '', incorrect: ''})
-  // const [error, setError] = useState("")
   const [showQuiz, setShowQuiz] = useState(false);
-  // const [showFinalScore, setShowFinalScore] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
   const [showNoTrivia, setShowNoTrivia] = useState(false);
 
@@ -40,28 +30,19 @@ function App() {
 
   const handleShowQuiz = () => {
     setShowQuiz(true);
-    // setShowFinalScore(false);
     setShowAbout(false);
     setShowNoTrivia(false);
   }
 
-  // const handleShowFinalScore = () => {
-  //   setShowFinalScore(true);
-  //   setShowQuiz(false);
-  //   setShowAbout(false);
-  // }
-
   const handleShowAbout = () => {
     setShowAbout(true);
     setShowQuiz(false);
-    // setShowFinalScore(false);
     setShowNoTrivia(false);
   }
 
   const handleShowNoTrivia = () => {
     setShowAbout(false);
     setShowQuiz(false);
-    // setShowFinalScore(false);
     setShowNoTrivia(true);
   }
 
@@ -71,18 +52,8 @@ function App() {
   }
 
   const handleCloseQuiz = () => setShowQuiz(false);
-  // const handleCloseFinalScore = () => setShowFinalScore(false);
   const handleCloseAbout = () => setShowAbout(false);
   const handleCloseNoTrivia = () => setShowNoTrivia(false);
-
-
-  // const handleSetUsername = () => setUsername(username)
-
-  // const handleChange = (event) => {
-  //     this.setState({
-  //       [event.target.name]: event.target.value
-  //     })
-  //   }
 
   useEffect(() => {
   }, [])

@@ -1,12 +1,11 @@
 import React from "react";
 import Jumbotron from 'react-bootstrap/Jumbotron';
-import Button from 'react-bootstrap/Button';
 
 export default function Header() {
     return (
         <Jumbotron style={{backgroundColor: "#cc4400"}}>
             <h1 style={{backgroundColor: "#cc4400"}} className="jumbotron" >Pumpkin Spice* Quiz App</h1>
-            <h3>*Nothing about the content of this quiz is pumpkin-spice related; nothing invoking pumpkin spice is realized in any thematic element in this project. I just needed a hook (Get it? Hook? Because this is a React project? And React uses hooks?) and it's autumn and I feel like we could all use something cozy right now. Burnt orange is pretty, isn't it? These are my favorite orange trivia facts:
+            <h3>*Nothing about the content of this quiz is pumpkin spice related. I just needed a hook (Get it? Hook? Because this is a React project? And React uses hooks?) and it's autumn and I feel like we could all use something cozy right now. Burnt orange is pretty, isn't it? These are my favorite orange trivia facts:
 
               1) According to <a style={{color: "#1f6135"}} href="https://gizmodo.com/hot-chocolate-tastes-much-better-in-an-orange-cup-5972777">this Gizmodo article</a>, hot chocolate tastes better when you serve it in an orange mug.
               2) The Golden Gate Bridge is painted in a color called <a style={{color: "#1f6135"}} href="https://www.goldengate.org/bridge/history-research/bridge-features/color-art-deco-styling/">International Orange</a>.  

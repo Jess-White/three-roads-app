@@ -1,14 +1,13 @@
 import React, {useState} from "react";
 import Card from 'react-bootstrap/Card';
-import { QUESTIONDATA } from '../Services/QuestionData.js';
-import { createQuizArray, getTriviaRound, reformatQuestions } from '../Services/QuestionFunctions.js';
+import { reformatQuestions } from '../Services/QuestionFunctions.js';
 import Question from './Question.js'
 import AllDoneAlert from './AllDoneAlert.js'
 import CorrectAlert from './CorrectAlert.js'
 import IncorrectAlert from './IncorrectAlert.js'
 import Button from 'react-bootstrap/Button';
 
-export default function TriviaRound({}) {
+export default function TriviaRound() {
   const [scoreCorrect, setScoreCorrect] = useState(0)
   const [scoreIncorrect, setScoreIncorrect] = useState(0)
   const [reformattedRound, setReformattedRound] = useState(reformatQuestions())
@@ -57,21 +56,15 @@ export default function TriviaRound({}) {
   }
 
     function handleCurrentQuestion() {
-      // setIndex(counter)
-      // setGetCurrentQuestion(reformattedRound[counter])
       console.log("waffle")
       if (index < 10) {
         setIndex(index + 1)
         console.log(index)
         setCurrentQuestion(reformattedRound[index])
         console.log(reformattedRound[index])
-        setIncorrect(false)
-        setCorrect(false)
       }
       else if (index === 10) {
         handleIsFinished()
-        setIncorrect(false)
-        setCorrect(false)
       }
     }
 
@@ -88,21 +81,9 @@ export default function TriviaRound({}) {
           <Question question={currentQuestion} handleAnswerSelected={handleAnswerSelected} />
       </div>
       <div>
-        {!isFinished ? (
-        <Button 
-          className="btn-lg"
-          style={{
-            borderColor: "#319b89",
-            backgroundColor: "#319b54", 
-            color: "#0c2715", 
-            fontSize: "20px", 
-            fontWeight: "bold",
-            margin: "2%"
-          }} onClick={handleCurrentQuestion}>Next Question</Button>
-        ) : null }
-        {isFinished && <AllDoneAlert></AllDoneAlert>}
         {isIncorrect && <IncorrectAlert></IncorrectAlert>}
         {isCorrect && <CorrectAlert></CorrectAlert>}
+        {isFinished && <AllDoneAlert></AllDoneAlert>}
         {isFinished ? (
         <Button 
           className="btn-lg"
