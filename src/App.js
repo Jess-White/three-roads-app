@@ -111,6 +111,7 @@ function App() {
                   borderColor: "#319b89",
                   backgroundColor: "#0c2715", 
                   color: "#319b54", 
+                  fontSize: "20px",
                   width: "100%"
                 }} 
                 onClick={handleCloseNoTrivia}>Close
@@ -184,7 +185,9 @@ function App() {
               style={{ 
                 borderColor: "#319b89",
                 backgroundColor: "#0c2715", 
-                color: "#319b54", 
+                color: "#319b54",
+                fontSize: "20px", 
+                fontWeight: "bold",
                 width: "100%"
               }} 
               onClick={handleCloseQuiz}>Close</Button>
@@ -215,7 +218,8 @@ function App() {
                 style={{ 
                   borderColor: "#319b89",
                   backgroundColor: "#0c2715", 
-                  color: "#319b54", 
+                  color: "#319b54",
+                  fontSize: "20px", 
                   width: "100%"
                 }} 
                 onClick={handleCloseAbout}>Close

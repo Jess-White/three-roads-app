@@ -18,6 +18,7 @@ export default function TriviaRound() {
   const [isCorrect, setCorrect] = useState(false)
   const [isIncorrect, setIncorrect] = useState(false)
   const [showFinalScore, setShowFinalScore] = useState(false)
+  const [answerKey, setAnswerKey] = useState('')
 
     // this.checkIndex = this.checkIndex.bind(this);
 
@@ -26,6 +27,8 @@ export default function TriviaRound() {
       setCurrentQuestion(reformattedRound[0])
       setIndex(0)
       setIsFinished(false)
+      setCorrect(false)
+      setIncorrect(false)
       setFinalScore(0)
       setShowFinalScore(false)
       setScoreCorrect(0)
@@ -43,6 +46,7 @@ export default function TriviaRound() {
         setIncorrect(true)
         setCorrect(false)
       }
+      setAnswerKey(currentQuestion.correct)
       handleCurrentQuestion()
     }
 
@@ -75,44 +79,52 @@ export default function TriviaRound() {
         <div className="meter">
           <progress style={{backgroundColor: "#cc4400", width: "100%"}} max="10" value={index}></progress>
         </div>
-        <h1>Question Number: {index}</h1>
-        <h1>Correct Score: {scoreCorrect}</h1>
-        <h1>Incorrect Score: {scoreIncorrect}</h1>
-          <Question question={currentQuestion} handleAnswerSelected={handleAnswerSelected} />
-      </div>
-      <div>
         {isIncorrect && <IncorrectAlert></IncorrectAlert>}
+        {isIncorrect ? (
+          <div>
+            <h1 style={{textAlign: "center"}}>The correct answer is</h1>
+            <h1 style={{color: "#00ff45", fontWeight: "bold", textAlign: "center"}}>{answerKey}</h1>
+          </div>
+        ) : null }
         {isCorrect && <CorrectAlert></CorrectAlert>}
         {isFinished && <AllDoneAlert></AllDoneAlert>}
-        {isFinished ? (
-        <Button 
-          className="btn-lg"
-          style={{
-            borderColor: "#319b89",
-            backgroundColor: "#319b54", 
-            color: "#0c2715", 
-            fontSize: "20px", 
-            fontWeight: "bold",
-            margin: "2%"
-          }} onClick={handleFinalScore}>See Your Final Score</Button>
-        ) : null }
-        {showFinalScore ? (
-        <h1>{finalScore} out of 10! Good job!</h1>
-        ) : null }
-        {isFinished ? (
-        <Button 
-          className="btn-lg"
-          style={{
-            width: "50%",
-            borderColor: "#319b89",
-            backgroundColor: "#319b54", 
-            color: "#0c2715", 
-            fontSize: "20px", 
-            fontWeight: "bold",
-            margin: "2%"
-          }} onClick={resetQuiz}>Play Another Round</Button>
-        ) : null }
-      </div>
+        <div>
+          {isFinished ? (
+          <Button 
+            className="btn-lg"
+            style={{
+              textAlign: "center",
+              width: "45%",
+              borderColor: "#319b89",
+              backgroundColor: "#319b54", 
+              color: "#0c2715", 
+              fontSize: "20px", 
+              fontWeight: "bold",
+              margin: "3%"
+            }} onClick={handleFinalScore}>See Final Score</Button>
+          ) : null }
+          {isFinished ? (
+          <Button 
+            className="btn-lg"
+            style={{
+              textAlign: "center",
+              width: "45%",
+              borderColor: "#319b89",
+              backgroundColor: "#319b54", 
+              color: "#0c2715", 
+              fontSize: "20px", 
+              fontWeight: "bold",
+              marginLeft: "1%"
+            }} onClick={resetQuiz}>Play Again</Button>
+          ) : null }
+          {showFinalScore ? (
+          <h1 style={{textAlign: "center"}}>{finalScore} out of 10! Good job!</h1>
+          ) : null }
+        </div>
+          {!isFinished ? (
+          <Question question={currentQuestion} handleAnswerSelected={handleAnswerSelected} />
+          ) : null }
+        </div>
       </Card>
       </div>
     );

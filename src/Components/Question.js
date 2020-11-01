@@ -13,7 +13,7 @@ export default function Question({question, handleAnswerSelected, handleGetQuest
           <ListGroup variant="flush">
 
           {question.answers.map(answer =>
-          <ListGroup.Item style={{backgroundColor: "#802a00"}} 
+          <ListGroup.Item style={{backgroundColor: "#802a00", cursor: "pointer"}} 
               onClick={() => {
                 if (answer === question.correct) {
                   handleAnswerSelected(true)

@@ -3,7 +3,7 @@ import App from './App';
 import About from './Components/About';
 import TriviaRound from './Components/TriviaRound';
 
-import { shallow, mount } from './enzyme';
+import { mount } from './enzyme';
 
 test('renders learn react link', () => {
   render(<App />);

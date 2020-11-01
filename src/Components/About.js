@@ -9,7 +9,7 @@ export default function About() {
             margin: "0%"}} className="jumbotron">Hi there!</h1>
             <h3>Pumpkin Spice Pop Quiz*</h3>
             <h5>This trivia quiz app was created in response to a technical challenge. Challenge specs included twenty-one trivia questions in an array-of-hashes format. The challenge was language-agnostic and open-ended, so I decided to build a React app with components for the quiz elements and hooks to manage scoring. It was Halloween when I finished the project, hence the pumpkin spice theme. You can see the repo <a style={{color: "#1f6135"}} href="https://github.com/Jess-White/three-roads-app">here.</a> Enjoy!</h5>
-            <p>*not actually pumpkin spicy</p>
+            <h5>*not actually pumpkin spicy</h5>
             
         </Jumbotron>
     )
