@@ -5,98 +5,155 @@ import Modal from 'react-bootstrap/Modal';
 import ModalBody from 'react-bootstrap/ModalBody';
 import ModalFooter from 'react-bootstrap/ModalFooter';
 import Header from './Components/Header';
+import Kitten from './Components/Kitten';
 import TriviaRound from './Components/TriviaRound';
-import ScoreChart from './Components/ScoreChart';
 import About from './Components/About';
-// import {QUESTIONDATA} from './Services/QuestionData';
-import { createQuizArray, getQuestion } from './Services/QuestionFunctions';
-import { getAllScores } from './Services/PlayersandScoresAPI';
+// // import {QUESTIONDATA} from './Services/QuestionData';
+// import { createQuizArray, getQuestion } from './Services/QuestionFunctions';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 function App() {
-  const [questions, setQuestions] = useState([])
-  const [randomquestion, setRandomQuestion] = useState([])
-  const [correct, setCorrect] = useState([])
-  const [incorrect, setIncorrect] = useState([])
-  const [finalScore, setFinalScore] = useState([])
-  const score = useState({username: '', correct: '', incorrect: ''})
-  const [error, setError] = useState("")
-  const [scores, setScores] = useState([])
-  const [showScores, setShowScores] = useState(false);
+  // const [questions, setQuestions] = useState([])
+  // const [randomquestion, setRandomQuestion] = useState([])
+  // const [correct, setCorrect] = useState([])
+  // const [incorrect, setIncorrect] = useState([])
+  // const [finalScore, setFinalScore] = useState([])
+  // const score = useState({username: '', correct: '', incorrect: ''})
+  // const [error, setError] = useState("")
   const [showQuiz, setShowQuiz] = useState(false);
-  const [showFinalScore, setShowFinalScore] = useState(false);
+  // const [showFinalScore, setShowFinalScore] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
+  const [showNoTrivia, setShowNoTrivia] = useState(false);
 
   const [username, setUsername] = useState('')
+  const [showWelcome, setShowWelcome] = useState(false);
+  const [showAddPlayer, setShowAddPlayer] = useState(false);
+  const [showHeaderButtons, setShowHeaderButtons] = useState(true);
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert('Submitting New Player ${username}')
+    setShowWelcome(true)
+    setShowAddPlayer(false)
   }
-
 
   const handleShowQuiz = () => {
     setShowQuiz(true);
-    setShowFinalScore(false);
-    setShowScores(false);
+    // setShowFinalScore(false);
     setShowAbout(false);
+    setShowNoTrivia(false);
   }
 
-  const handleShowFinalScore = () => {
-    setShowFinalScore(true);
-    setShowQuiz(false);
-    setShowScores(false);
-    setShowAbout(false);
-  }
-
-  const handleShowScores = () => {
-    setShowScores(true);
-    setShowQuiz(false);
-    setShowFinalScore(false);
-    setShowAbout(false);
-  }
+  // const handleShowFinalScore = () => {
+  //   setShowFinalScore(true);
+  //   setShowQuiz(false);
+  //   setShowAbout(false);
+  // }
 
   const handleShowAbout = () => {
     setShowAbout(true);
-    setShowScores(false);
     setShowQuiz(false);
-    setShowFinalScore(false);
+    // setShowFinalScore(false);
+    setShowNoTrivia(false);
   }
 
-  const handleCloseScores = () => setShowScores(false);
+  const handleShowNoTrivia = () => {
+    setShowAbout(false);
+    setShowQuiz(false);
+    // setShowFinalScore(false);
+    setShowNoTrivia(true);
+  }
+
+  const handleShowAddPlayer = () => {
+    setShowAddPlayer(true)
+    setShowHeaderButtons(false)
+  }
+
   const handleCloseQuiz = () => setShowQuiz(false);
-  const handleCloseFinalScore = () => setShowFinalScore(false);
+  // const handleCloseFinalScore = () => setShowFinalScore(false);
   const handleCloseAbout = () => setShowAbout(false);
+  const handleCloseNoTrivia = () => setShowNoTrivia(false);
 
 
-  const handleSetUsername = () => setUsername(username)
+  // const handleSetUsername = () => setUsername(username)
 
-  const handleChange = (event) => {
-      this.setState({
-        [event.target.name]: event.target.value
-      })
-    }
+  // const handleChange = (event) => {
+  //     this.setState({
+  //       [event.target.name]: event.target.value
+  //     })
+  //   }
 
   useEffect(() => {
-    getAllScores() 
-      .then(response => {
-        setScores(response)
-      }).catch(error => {
-        setError("Something went wrong.")
-      })
   }, [])
 
   return (
     <div className="App">
     <Header />
 
+    {showHeaderButtons ? (
+    <div>
+    <Button 
+        className="btn-lg"
+        style={{
+          borderColor: "#319b89",
+          backgroundColor: "#319b54", 
+          color: "#0c2715", 
+          fontSize: "20px", 
+          fontWeight: "bold",
+          margin: "2%"
+        }}
+        value="Submit"
+        type="submit"
+        onClick={handleShowAddPlayer}
+      >
+        Nice! More Trivia!
+      </Button>
+      <Button 
+        className="btn-lg"
+        style={{
+          borderColor: "#319b89",
+          backgroundColor: "#319b54", 
+          color: "#0c2715", 
+          fontSize: "20px", 
+          fontWeight: "bold",
+          margin: "2%"
+        }}
+        value="Submit"
+        type="submit"
+        onClick={handleShowNoTrivia}
+      >
+        No More Trivia! 
+    </Button>
+    </div>
+    ) : null}
+
+    <Modal show={showNoTrivia} onHide={handleCloseNoTrivia}>
+          <ModalBody>
+          <Kitten></Kitten>
+          </ModalBody>
+            <ModalFooter>
+              <Button 
+                className="close-btn" 
+                color="danger" 
+                style={{ 
+                  borderColor: "#319b89",
+                  backgroundColor: "#0c2715", 
+                  color: "#319b54", 
+                  width: "100%"
+                }} 
+                onClick={handleCloseNoTrivia}>Close
+              </Button>
+            </ModalFooter>
+          </Modal>
+
+    {showAddPlayer ? (
       <div>
-        <Card style={{backgroundColor: "#000058"}}>
-          <div className="card-header">
+        <Card style={{backgroundColor: "#cc4400"}}>
+          <div className="card-header" style={{backgroundColor: "#b33b00"}}>
           Add New Player!
           </div>
-          <div className="card-body">
+          <div className="card-body" style={{backgroundColor: "#ee4e00"}}>
             <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <h4>Enter Your Username:</h4>
@@ -111,6 +168,14 @@ function App() {
               </div>
                 <Button 
                   className="btn-lg"
+                  style={{
+                    borderColor: "#319b89",
+                    backgroundColor: "#319b54", 
+                    color: "#0c2715", 
+                    fontSize: "20px", 
+                    fontWeight: "bold",
+                    margin: "2%"
+                  }}
                   value="Submit"
                   type="submit"
                 >
@@ -120,120 +185,74 @@ function App() {
           </div>
         </Card>
       </div>
+      ) : null}
 
-      <Button 
-        className="btn-lg" 
-        style={{
-          backgroundColor: "#ffff1b", 
-          color: "#000080", 
-          fontSize: "20px", 
-          fontWeight: "bold",
-          margin: "2%"
-        }} 
-        type="submit"
-        onClick={handleShowQuiz}>Take the Quiz!
-      </Button>
-      <Modal show={showQuiz} onHide={handleShowQuiz}>
-      <ModalBody>
-      <TriviaRound/>
-      </ModalBody>
-        <ModalFooter>
+      {showWelcome ? (
+        <div>
+        <h1>Welcome, {username}!</h1>
           <Button 
-          className="close-btn" 
-          style={{ 
-            backgroundColor: "#000080", 
-            color: "#ffff1b", 
-            width: "100%"
-          }} 
-          onClick={handleCloseQuiz}>Close</Button>
-        </ModalFooter>
-      </Modal>
-
-      <Button 
-        className="btn-lg" 
-        style={{
-          backgroundColor: "#ffff1b", 
-          color: "#000080", 
-          fontSize: "20px", 
-          fontWeight: "bold",
-          margin: "2%"
-        }} 
-        type="submit"
-        onClick={handleShowFinalScore}>See Your Score
-      </Button>
-      <Modal show={showFinalScore} onHide={handleShowFinalScore}>
-      <ModalBody>
-      </ModalBody>
-      <ScoreChart score={score} correct={correct} incorrect={incorrect}/>
-        <ModalFooter>
-          <Button 
-          className="close-btn" 
-          style={{ 
-            backgroundColor: "#000080", 
-            color: "#ffff1b", 
-            width: "100%"
-          }} 
-          onClick={handleCloseFinalScore}>Close</Button>
-        </ModalFooter>
-      </Modal>
-
-      <Button 
-        className="btn-lg" 
-        style={{
-          backgroundColor: "#ffff1b", 
-          color: "#000080", 
-          fontSize: "20px", 
-          fontWeight: "bold",
-          margin: "2%"
-        }} 
-        type="submit"
-        onClick={handleShowScores}>See How Other People Scored
-      </Button>
-      <Modal show={showScores} onHide={handleShowScores}>
-      <ModalBody>
-      <ScoreChart scores={scores}/>
-      </ModalBody>
-        <ModalFooter>
-          <Button 
-          className="close-btn" 
-          style={{ 
-            backgroundColor: "#000080", 
-            color: "#ffff1b", 
-            width: "100%"
-          }} 
-          onClick={handleCloseScores}>Close</Button>
-        </ModalFooter>
-      </Modal>
-
-    <Button 
-        className="btn-lg" 
-        style={{
-          backgroundColor: "#ffff1b", 
-          color: "#000080", 
-          fontSize: "20px", 
-          fontWeight: "bold",
-          margin: "2%"
-        }} 
-        type="submit"
-        onClick={handleShowAbout}>About This Quiz?
-      </Button>
-      <Modal show={showAbout} onHide={handleCloseAbout}>
-      <ModalBody>
-      <About></About>
-      </ModalBody>
-        <ModalFooter>
-          <Button 
-            className="close-btn" 
-            color="danger" 
-            style={{ 
-              backgroundColor: "#000080", 
-              color: "#ffff1b", 
-              width: "100%"
+            className="btn-lg" 
+            style={{
+              borderColor: "#319b89",
+              backgroundColor: "#319b54", 
+              color: "#0c2715", 
+              fontSize: "20px", 
+              fontWeight: "bold",
+              margin: "2%"
             }} 
-            onClick={handleCloseAbout}>Close
+            type="submit"
+            onClick={handleShowQuiz}>Take the Quiz!
           </Button>
-        </ModalFooter>
-      </Modal>
+          <Modal style={{color: "#cc4400"}} show={showQuiz} onHide={handleShowQuiz}>
+          <ModalBody>
+          <TriviaRound/>
+          </ModalBody>
+            <ModalFooter>
+              <Button 
+              className="close-btn" 
+              style={{ 
+                borderColor: "#319b89",
+                backgroundColor: "#0c2715", 
+                color: "#319b54", 
+                width: "100%"
+              }} 
+              onClick={handleCloseQuiz}>Close</Button>
+            </ModalFooter>
+          </Modal>
+
+        <Button 
+            className="btn-lg" 
+            style={{
+              borderColor: "#319b89",
+              backgroundColor: "#319b54", 
+              color: "#0c2715", 
+              fontSize: "20px", 
+              fontWeight: "bold",
+              margin: "2%"
+            }} 
+            type="submit"
+            onClick={handleShowAbout}>About the Quiz
+          </Button>
+          <Modal show={showAbout} onHide={handleCloseAbout}>
+          <ModalBody>
+          <About></About>
+          </ModalBody>
+            <ModalFooter>
+              <Button 
+                className="close-btn" 
+                color="danger" 
+                style={{ 
+                  borderColor: "#319b89",
+                  backgroundColor: "#0c2715", 
+                  color: "#319b54", 
+                  width: "100%"
+                }} 
+                onClick={handleCloseAbout}>Close
+              </Button>
+            </ModalFooter>
+          </Modal>
+        </div>
+      ) : null}
     </div>
   );
 }

@@ -1,40 +1,19 @@
-import React, {useState, useEffect} from "react";
-import Button from 'react-bootstrap/Button';
-import { addFinalScore } from '../Services/PlayersandScoresAPI';
-
+import React from "react";
+import Card from 'react-bootstrap/Card';
+import ListGroup from 'react-bootstrap/ListGroup';
 export default function Question({question, handleAnswerSelected, handleGetQuestion, handleGetCurrentQuestion}) {
-  const [questionNumber, setQuestionNumber] = useState(0)
-  const [finalScore, setFinalScore] = useState(0)
-  const [scoreCorrect, setScoreCorrect] = useState(0)
-  const [scoreIncorrect, setScoreIncorrect] = useState(0)
-  const [questionCounter, setQuestionCounter] = useState(0)
-  // const [getNextQuestion, setGetNextQuestion] = useState(0)
-  // const [getQuestion, setGetQuestion] = useState([0])
-  // const [getCurrentQuestionIndex, setGetCurrentQuestionIndex] = useState(0)
-
-    // this.checkIndex = this.checkIndex.bind(this);
-
-  function handleFinalScore() {
-    setFinalScore(scoreCorrect)
-    addFinalScore()
-  }
-
-    function handleViewScores() {
-    }
-
-  // useEffect(() => {
-  //   handleFinalScore()
-  // });
 
     return (
       <div>
       <div>
         <div>
-          <div>
-          <h1>{question.question}</h1>
-          <h2 style={{color: "red"}}>{question.correct}</h2>
+          <Card style={{backgroundColor: "#cc4400", padding: "2%"}}>
+          <Card.Title style={{backgroundColor: "#b33b00", padding: "1%"}}><h2>
+          {question.question}</h2></Card.Title>
+          <ListGroup variant="flush">
+
           {question.answers.map(answer =>
-          <h2 style={{color: "blue"}} 
+          <ListGroup.Item style={{backgroundColor: "#802a00"}} 
               onClick={() => {
                 if (answer === question.correct) {
                   handleAnswerSelected(true)
@@ -42,21 +21,13 @@ export default function Question({question, handleAnswerSelected, handleGetQuest
                 else {
                   handleAnswerSelected(false)}
                 }}>
-              {answer}
-              </h2>
+              <h4>{answer}</h4>
+              </ListGroup.Item>
           )}
-          </div>
+          </ListGroup>
+          </Card>
         </div>
       </div>
-      <button onClick={handleFinalScore}>See Your Final Score</button>
-      <h1>{finalScore}</h1>
-      <button onClick={handleViewScores}>See All Final Scores</button>
       </div>
-
-      // {isFinished && <AllDoneAlert></AllDoneAlert>}
-      // {isIncorrect && <IncorrectAlert></IncorrectAlert>}
-      // {isCorrect && <CorrectAlert></CorrectAlert>}}
     );
   };
-
-  

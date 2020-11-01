@@ -150,6 +150,12 @@ export const reformatQuestions = () => {
       question.incorrect.map((incorrectOption) => {
         question.answers.push(incorrectOption)
       })
+    for (let i = question.answers.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * i)
+      const temp = question.answers[i]
+      question.answers[i] = question.answers[j]
+      question.answers[j] = temp
+    }
     return question
   })
   return reformattedArray
