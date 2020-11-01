@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
+import Card from 'react-bootstrap/Card';
 
 export default class ScoreChart extends React.Component {
   render() {
-    console.log(this.props.score)
+    console.log(this.props.scores)
     return (
         <div>
-        {this.props.score.map(score =>
+        {this.props.scores.map(score =>
+          <Card style={{backgroundColor: "black", paddingBottom: "2%"}}>
           <div>
-            <h1>{score.username}</h1>
-            <h2>{score.correct}</h2>
-            <h2>{score.incorrect}</h2>
+            <Card.Header><Card.Title>{score.username}</Card.Title></Card.Header>
+            <Card.Text>{score.correct}</Card.Text>
+            <Card.Text>{score.incorrect}</Card.Text>
           </div>
+          </Card>
           )}
         </div>
       );
     }
   }
+

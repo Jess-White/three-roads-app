@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Card from 'react-bootstrap/Card';
 
 export default class Scores extends React.Component {
   render() {
@@ -6,13 +7,16 @@ export default class Scores extends React.Component {
     return (
         <div>
         {this.props.scores.map(score =>
+          <Card style={{backgroundColor: "black", paddingBottom: "2%"}}>
           <div>
-            <h1>{score.username}</h1>
-            <h2>{score.correct}</h2>
-            <h2>{score.incorrect}</h2>
+            <Card.Title>{score.username}</Card.Title>
+            <Card.Text>{score.correct}</Card.Text>
+            <Card.Text>{score.incorrect}</Card.Text>
           </div>
+          </Card>
           )}
         </div>
       );
     }
   }
+

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 import Modal from 'react-bootstrap/Modal';
 import ModalBody from 'react-bootstrap/ModalBody';
 import ModalFooter from 'react-bootstrap/ModalFooter';
 import Header from './Components/Header';
-import Scores from './Components/Scores';
 import TriviaRound from './Components/TriviaRound';
 import ScoreChart from './Components/ScoreChart';
 import About from './Components/About';
@@ -27,6 +27,13 @@ function App() {
   const [showQuiz, setShowQuiz] = useState(false);
   const [showFinalScore, setShowFinalScore] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
+
+  const [username, setUsername] = useState('')
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert('Submitting New Player ${username}')
+  }
 
 
   const handleShowQuiz = () => {
@@ -63,6 +70,14 @@ function App() {
   const handleCloseAbout = () => setShowAbout(false);
 
 
+  const handleSetUsername = () => setUsername(username)
+
+  const handleChange = (event) => {
+      this.setState({
+        [event.target.name]: event.target.value
+      })
+    }
+
   useEffect(() => {
     getAllScores() 
       .then(response => {
@@ -75,6 +90,37 @@ function App() {
   return (
     <div className="App">
     <Header />
+
+      <div>
+        <Card style={{backgroundColor: "#000058"}}>
+          <div className="card-header">
+          Add New Player!
+          </div>
+          <div className="card-body">
+            <form onSubmit={handleSubmit}>
+              <div className="form-group">
+                <h4>Enter Your Username:</h4>
+                <input
+                  type="text"
+                  name="username"
+                  placeholder="username"
+                  value={username}
+                  onChange={event => setUsername(event.target.value)}
+                  required
+                />
+              </div>
+                <Button 
+                  className="btn-lg"
+                  value="Submit"
+                  type="submit"
+                >
+                  Add New Player
+                </Button>
+            </form>
+          </div>
+        </Card>
+      </div>
+
       <Button 
         className="btn-lg" 
         style={{
@@ -145,7 +191,7 @@ function App() {
       </Button>
       <Modal show={showScores} onHide={handleShowScores}>
       <ModalBody>
-      <Scores scores={scores}/>
+      <ScoreChart scores={scores}/>
       </ModalBody>
         <ModalFooter>
           <Button 

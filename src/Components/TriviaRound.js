@@ -9,15 +9,21 @@ import IncorrectAlert from './IncorrectAlert.js'
 export default function TriviaRound() {
   const [scoreCorrect, setScoreCorrect] = useState(0)
   const [scoreIncorrect, setScoreIncorrect] = useState(0)
-  const [reformattedRound, setreformattedRound] = useState(reformatQuestions())
+  const [reformattedRound, setReformattedRound] = useState(reformatQuestions())
   const [currentQuestion, setCurrentQuestion] = useState(reformattedRound[0])
   const [index, setIndex] = useState(1)
   const [isFinished, setIsFinished] = useState(false)
   const [isCorrect, setCorrect] = useState(false)
   const [isIncorrect, setIncorrect] = useState(false)
 
-
     // this.checkIndex = this.checkIndex.bind(this);
+
+    function resetQuiz() {
+      setReformattedRound(reformatQuestions())
+      setCurrentQuestion(reformattedRound[0])
+      setIndex(0)
+      setIsFinished(false)
+    }
 
     function handleAnswerSelected(isCorrect) {
       if (isCorrect) {
@@ -66,6 +72,9 @@ export default function TriviaRound() {
       <div>
         {!isFinished ? (
         <button onClick={handleCurrentQuestion}>Next Question</button>
+        ) : null }
+        {isFinished ? (
+        <button onClick={resetQuiz}>Play Another Round</button>
         ) : null }
         {isFinished && <AllDoneAlert></AllDoneAlert>}
         {isIncorrect && <IncorrectAlert></IncorrectAlert>}

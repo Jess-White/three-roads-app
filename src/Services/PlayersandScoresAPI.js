@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-export const addNewPlayer = ({username, email}) => {
-  return axios
-    .post('/api/players', {username, email})
-    .then(response => response.data)
-}
+// export const addNewPlayer = ({username, email}) => {
+//   return axios
+//     .post('/api/players', {username, email})
+//     .then(response => response.data)
+// }
 
 export const addFinalScore = ({username, incorrect, correct}) => {
   return axios 

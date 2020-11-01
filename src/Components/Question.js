@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import Button from 'react-bootstrap/Button';
+import { addFinalScore } from '../Services/PlayersandScoresAPI';
 
 export default function Question({question, handleAnswerSelected, handleGetQuestion, handleGetCurrentQuestion}) {
   const [questionNumber, setQuestionNumber] = useState(0)
@@ -14,15 +15,16 @@ export default function Question({question, handleAnswerSelected, handleGetQuest
     // this.checkIndex = this.checkIndex.bind(this);
 
   function handleFinalScore() {
-    setFinalScore(finalScore + scoreCorrect)
+    setFinalScore(scoreCorrect)
+    addFinalScore()
   }
 
     function handleViewScores() {
     }
 
-  useEffect(() => {
-    handleFinalScore()
-  });
+  // useEffect(() => {
+  //   handleFinalScore()
+  // });
 
     return (
       <div>
