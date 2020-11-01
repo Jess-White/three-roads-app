@@ -8,7 +8,7 @@ import Header from './Components/Header';
 import Kitten from './Components/Kitten';
 import TriviaRound from './Components/TriviaRound';
 import About from './Components/About';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 function App() {

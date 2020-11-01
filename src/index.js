@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.css';
 
 axios.defaults.baseURL =
   process.env.NODE_ENV === "development"
