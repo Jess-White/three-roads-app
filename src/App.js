@@ -113,7 +113,8 @@ function App() {
                   backgroundColor: "#0c2715", 
                   color: "#319b54", 
                   fontSize: "20px",
-                  width: "100%"
+                  width: "100%",
+                  fontWeight: "bold"
                 }} 
                 onClick={handleCloseNoTrivia}>Close
               </Button>
