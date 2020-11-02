@@ -1,5 +1,9 @@
 ## Welcome to Pumpkin Spice Quiz App!
 
+# You can view a deployed version of this app here:
+
+https://pumpkin-spicy.netlify.app 
+
 This trivia quiz app was created in response to a technical challenge. Challenge specs included twenty-one trivia questions in an array-of-hashes format. The challenge was language-agnostic and open-ended, so I decided to build a React app with components for the quiz elements and hooks to manage scoring. 
 
 # React Hooks Documentation: 
@@ -17,8 +21,6 @@ I used Create React App and customized formatting with React Bootstrap.
 https://react-bootstrap.github.io/getting-started/introduction/
 
 # Read on for some npm and React basic info:
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 # Getting Started with Create React App
 
