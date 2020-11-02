@@ -6,6 +6,23 @@ https://pumpkin-spicy.netlify.app
 
 This trivia quiz app was created in response to a technical challenge. Challenge specs included twenty-one trivia questions in an array-of-hashes format. The challenge was language-agnostic and open-ended, so I decided to build a React app with components for the quiz elements and hooks to manage scoring. 
 
+#NOTE RE: TECHNICAL CHALLENGE SUBMISSION:
+#11-2-2020:
+
+One of the objectives of this project was to explore unit testing. I did not use an integrated unit testing approach  when I was building this project.
+
+I also did not have time to write unit tests at the end of this project. I installed Jest and Enzyme and wrote a couple of tests to practice Jest's format.
+
+(You can find Jest and Enzyme tutorials here; the second one was ultimately more helpful for me: 
+
+https://www.smashingmagazine.com/2020/06/practical-guide-testing-react-applications-jest/
+
+https://itnext.io/how-to-unit-test-in-react-72e911e2b8d
+
+)
+
+I'm still working on unit testing. I plan to use this project to practice writing tests for React so that my next project can benefit from integrated unit testing. To keep this work separate, I've created a new branch, 'jess', and am writing tests and building test components on that branch. 
+
 # React Hooks Documentation: 
 
 https://reactjs.org/docs/hooks-intro.html
