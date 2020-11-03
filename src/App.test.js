@@ -2,13 +2,68 @@ import { render, screen } from '@testing-library/react';
 import React from 'react'
 import Enzyme, { shallow } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
+import isEqual from 'lodash.isequal'
 
 /* Components */
 import TestComponent from './Components/TestComponent'
 import Paragraph from './Components/Paragraph'
+import Toggle from './Components/Toggle'
+import Hooks from './Components/Hooks'
+
+import { createQuizArray } from './Services/QuestionFunctions'
+import { QUESTIONDATA } from './Services/QuestionData'
+
+
 
 // Configure enzyme for react 16
 Enzyme.configure({ adapter: new Adapter() })
+
+//function tests:
+
+// export const createQuizArray = () => {
+//   let questionDataArray = [];
+//   QUESTIONDATA.forEach((question) => {
+//     questionDataArray.push(question);
+//   })
+//   return questionDataArray;
+// }
+
+// {
+//   "question": "A group of tigers are referred to as:",
+//   "incorrect": ["Chowder", "Pride", "Destruction"],
+//   "correct": "Ambush"
+// }
+
+describe('createQuizArrayEqual', () => {
+  it('should return an array that is equal to QUESTIONDATA', () => {
+    const quizArray = createQuizArray()
+    expect(isEqual(quizArray, QUESTIONDATA)).toEqual(true)
+  })
+})
+
+describe('createQuizArrayItemEqual', () => {
+  it('should return an array whose first value is equal to the first value of QUESTIONDATA', () => {
+    const quizArray = createQuizArray() 
+    expect(isEqual(quizArray[0], QUESTIONDATA[0])).toEqual(true)
+  })
+})
+
+describe('createQuizArrayItemValueEqual', () => {
+  it('should return an array whose first value has an "incorrect" array that is equal to the same array in QUESTIONDATA', () => {
+    const quizArray = createQuizArray() 
+    expect(quizArray[0].incorrect === QUESTIONDATA[0].incorrect).toEqual(true)
+  })
+})
+
+describe('createQuizArrayLengthEqual', () => {
+  it('should return an array that is the same length as QUESTIONDATA', () => {
+    const quizArray = createQuizArray() 
+    expect(quizArray.length === QUESTIONDATA.length).toEqual(true)
+  }) 
+})
+
+
+//component tests:
 
 describe('Paragraph', () => {
   it('should render children inside a p tag', () => {
@@ -20,10 +75,52 @@ describe('Paragraph', () => {
 })
 
 
+describe('Toggle', () => {
+  describe('Behavioural (Integration)', () => {
+    const wrapper = shallow(<Toggle />);
+    it('renders a button with "Toggle" as children', () => {
+      expect(wrapper.find('button')).toHaveLength(1);
+    });
+    it('renders "Toggled" as button children if button is clicked', () => {
+      wrapper.find('button').simulate('click');
+      expect(wrapper.find('button').text()).toEqual('Toggled');
+    });
+    it('renders "Toggle" as button children if button is clicked again', () => {
+      wrapper.find('button').simulate('click');
+      expect(wrapper.find('button').text()).toEqual('Toggle');
+    });
+  });
+  
+  describe('Component (Unit)', () => {
+    const wrapper = shallow(<Toggle />);
+    describe('Toggle function', () => {
+      it('toggles "toggled" variable in state', () => {
+        expect(wrapper.state('toggled')).toBe(false);
+        wrapper.instance().toggle();
+        expect(wrapper.state('toggled')).toBe(true);
+      });
+    });
+  });
+})
+
+describe('Hooks', () => {
+  const wrapper = shallow(<Hooks />);
+  it('renders a button with "Toggle" as children', () => {
+    expect(wrapper.find('button')).toHaveLength(1);
+  });
+  it('renders "Toggled" as button children if button is clicked', () => {
+    wrapper.find('button').simulate('click');
+    expect(wrapper.find('button').text()).toEqual('Toggled');
+  });
+  it('renders "Toggle" as button children if button is clicked again', () => {
+    wrapper.find('button').simulate('click');
+    expect(wrapper.find('button').text()).toEqual('Toggle');
+  });
+})
 
 
 
-
+//Mock question and test functions
 
 // import App from './App';
 // import About from './Components/About';

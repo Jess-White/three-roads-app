@@ -9,6 +9,7 @@ import Footer from './Components/Footer';
 import Kitten from './Components/Kitten';
 import TriviaRound from './Components/TriviaRound';
 import About from './Components/About';
+import Paragraph from './Components/Paragraph'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -231,6 +232,7 @@ function App() {
         </div>
       ) : null}
       <Footer />
+      <Paragraph>This is my first test</Paragraph>
     </div>
   );
 }
