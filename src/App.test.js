@@ -13,6 +13,8 @@ import Hooks from './Components/Hooks'
 import { createQuizArray, randomizeQuestions, getTriviaRound, reformatQuestions, getQuestion } from './Services/QuestionFunctions'
 import { QUESTIONDATA } from './Services/QuestionData'
 
+import { resetQuiz } from './Components/TrivaRound'
+
 
 
 // Configure enzyme for react 16
@@ -124,13 +126,6 @@ describe('triviaRoundLength', () => {
   });
 })
 
-// describe('triviaRoundShift', () => {
-//   it('should return an array that is then taken out of the original array', () => {
-//     const triviaRound = getTriviaRound() 
-
-//   })
-// })
-
 // // make a function to format the questions in the array created in randomizeQuestions so that the correct and incorrect answers are shuffled into a single array
 
 // export const reformatQuestions = () => {
@@ -237,6 +232,63 @@ describe('pushCorrectAnswerIntoAnswerArray', () => {
 //   }, [])
 
 
+// function resetQuiz() {
+//       setReformattedRound(reformatQuestions())
+//       setCurrentQuestion(reformattedRound[0])
+//       setIndex(0)
+//       setIsFinished(false)
+//       setCorrect(false)
+//       setIncorrect(false)
+//       setFinalScore(0)
+//       setShowFinalScore(false)
+//       setScoreCorrect(0)
+//       setScoreIncorrect(0)
+//     }
+
+describe('test setCurrentQuestion from resetQuiz', () => {
+  it('should set the value of currentQuestion to reformattedRound[0]', () => {
+    
+    expect(currentQuestion === reformattedRound[0]).toEqual(true)
+  })
+} )
+
+//     function handleAnswerSelected(isCorrect) {
+//       if (isCorrect) {
+//         setScoreCorrect(scoreCorrect + 1)
+//         setCorrect(true)
+//         setIncorrect(false)
+
+//       } else {
+//         setScoreIncorrect(scoreIncorrect + 1)
+//         setIncorrect(true)
+//         setCorrect(false)
+//       }
+//       setAnswerKey(currentQuestion.correct)
+//       handleCurrentQuestion()
+//     }
+
+//     function handleIsFinished() {
+//       setIsFinished(true)
+//     }
+
+//     function handleFinalScore() {
+//     setFinalScore(scoreCorrect)
+//     setShowFinalScore(true)
+//   }
+
+//     function handleCurrentQuestion() {
+//       console.log("waffle")
+//       if (index < 10) {
+//         setIndex(index + 1)
+//         console.log(index)
+//         setCurrentQuestion(reformattedRound[index])
+//         console.log(reformattedRound[index])
+//       }
+//       else if (index === 10) {
+//         handleIsFinished()
+//       }
+//     }
+
 //component tests:
 
 describe('Paragraph', () => {
@@ -336,71 +388,3 @@ describe('Hooks', () => {
 //     expect(value).toEqual("banana@aol.com");
 //   });
 // });
-
-// // make a function to create a new array for each quiz out of the constant QUESTIONDATA
-
-// export const createQuizArray = () => {
-//   let questionDataArray = [];
-//   QUESTIONDATA.forEach((question) => {
-//     questionDataArray.push(question);
-//   })
-//   return questionDataArray;
-// }
-
-// // make a function to randomize the questions in the array from createQuizArray
-
-// export const randomizeQuestions = () => {
-//   let randomizedArray = createQuizArray();
-//   for (let i = randomizedArray.length - 1; i > 0; i--) {
-//     const j = Math.floor(Math.random() * i)
-//     const temp = randomizedArray[i]
-//     randomizedArray[i] = randomizedArray[j]
-//     randomizedArray[j] = temp
-//   }
-//   return randomizedArray
-// }
-
-// // make a function to create an array that holds a round of ten trivia questions from the array created in randomizeQuestions
-
-// export const getTriviaRound = () => {
-//   let roundArray = []
-//   let pullArray = randomizeQuestions()
-//   let counter = 0
-//   while (counter < 10) {
-//     roundArray.push(pullArray[counter])
-//     pullArray.shift()
-//     counter += 1
-//   }
-//   return roundArray
-// }
-
-// // make a function to format the questions in the array created in randomizeQuestions so that the correct and incorrect answers are shuffled into a single array
-
-// export const reformatQuestions = () => {
-//   let reformattedArray = getTriviaRound().map((question) => {
-//     question.answers = []
-//     question.answers.push(question.correct)
-//       question.incorrect.map((incorrectOption) => {
-//         return  (question.answers.push(incorrectOption))
-//       })
-//     for (let i = question.answers.length - 1; i > 0; i--) {
-//       const j = Math.floor(Math.random() * i)
-//       const temp = question.answers[i]
-//       question.answers[i] = question.answers[j]
-//       question.answers[j] = temp
-//     }
-//     return question
-//   })
-//   return reformattedArray
-// }
-
-// // (NOT IN USE) make function to select one question from the question array to display
-// //and remove it from the question array (NOT IN USE)
-
-// export const getQuestion = () => {
-//     let thisPlayArray = createQuizArray()
-//     let randomNumber = Math.floor(Math.random() * thisPlayArray.length);
-//     let randomQuestion = (thisPlayArray[randomNumber]);
-//     thisPlayArray.splice(randomNumber)
-//     return randomQuestion
-// }
