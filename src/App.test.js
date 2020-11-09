@@ -10,7 +10,7 @@ import Paragraph from './Components/Paragraph'
 import Toggle from './Components/Toggle'
 import Hooks from './Components/Hooks'
 
-import { createQuizArray } from './Services/QuestionFunctions'
+import { createQuizArray, randomizeQuestions, getTriviaRound, reformatQuestions, getQuestion } from './Services/QuestionFunctions'
 import { QUESTIONDATA } from './Services/QuestionData'
 
 
@@ -61,6 +61,180 @@ describe('createQuizArrayLengthEqual', () => {
     expect(quizArray.length === QUESTIONDATA.length).toEqual(true)
   }) 
 })
+
+// // make a function to randomize the questions in the array from createQuizArray
+
+// export const randomizeQuestions = () => {
+//   let randomizedArray = createQuizArray();
+//   for (let i = randomizedArray.length - 1; i > 0; i--) {
+//     const j = Math.floor(Math.random() * i)
+//     const temp = randomizedArray[i]
+//     randomizedArray[i] = randomizedArray[j]
+//     randomizedArray[j] = temp
+//   }
+//   return randomizedArray
+// }
+
+describe('createRandomizedArray', () => {
+  it('should return an array that is NOT equal to the original QUESTIONDATA', () => {
+    const randomArray = randomizeQuestions()
+    expect(isEqual(randomArray, QUESTIONDATA)).toEqual(false)
+  })
+})
+
+describe('createRandomizedArrayLength', () => {
+  it('should return an array that is the same length of the original QUESTIONDATA', () => {
+    const randomArray = randomizeQuestions() 
+    expect(randomArray.length === QUESTIONDATA.length).toEqual(true)
+  })
+})
+
+describe('createRandomizedArrayUnequal', () => {
+  it('should return an array that is not in the same order as the original QUESTIONDATA', () => {
+    const randomArray = randomizeQuestions()
+    let counter = 0 
+    let randomTester = 0
+    while (counter < randomArray.length) {
+      if ((isEqual(randomArray[counter], QUESTIONDATA[counter])) === true) {
+        randomTester += 1
+      }
+      counter += 1
+    }
+    expect(randomTester < (QUESTIONDATA.length)/2).toEqual(true)
+  })
+})
+// // make a function to create an array that holds a round of ten trivia questions from the array created in randomizeQuestions
+
+// export const getTriviaRound = () => {
+//   let roundArray = []
+//   let pullArray = randomizeQuestions()
+//   let counter = 0
+//   while (counter < 10) {
+//     roundArray.push(pullArray[counter])
+//     pullArray.shift()
+//     counter += 1
+//   }
+//   return roundArray
+// }
+
+describe('triviaRoundLength', () => {
+  it('should return an array that contains 10 questions', () => {
+    const triviaRound = getTriviaRound() 
+    expect(triviaRound.length === 10).toEqual(true)
+  });
+})
+
+// describe('triviaRoundShift', () => {
+//   it('should return an array that is then taken out of the original array', () => {
+//     const triviaRound = getTriviaRound() 
+
+//   })
+// })
+
+// // make a function to format the questions in the array created in randomizeQuestions so that the correct and incorrect answers are shuffled into a single array
+
+// export const reformatQuestions = () => {
+//   let reformattedArray = getTriviaRound().map((question) => {
+//     question.answers = []
+//     question.answers.push(question.correct)
+//       question.incorrect.map((incorrectOption) => {
+//         return  (question.answers.push(incorrectOption))
+//       })
+//     for (let i = question.answers.length - 1; i > 0; i--) {
+//       const j = Math.floor(Math.random() * i)
+//       const temp = question.answers[i]
+//       question.answers[i] = question.answers[j]
+//       question.answers[j] = temp
+//     }
+//     return question
+//   })
+//   return reformattedArray
+// }
+
+describe('addAnswersArray', () => {
+  it('should add an array called answers to each question', () => {
+    const withAnswerArray = reformatQuestions()
+    const testQuestion = withAnswerArray[0] 
+    expect(testQuestion.answers !== false).toEqual(true)
+  })
+})
+
+describe('reformatAnswers', () => {
+  it('should add an array called answers that contains all four possible answers', () => {
+    const withAnswerArray = reformatQuestions()
+    const testQuestion = withAnswerArray[0] 
+    expect(testQuestion.answers.length === 4).toEqual(true)
+  })
+})
+
+describe('pushCorrectAnswerIntoAnswerArray', () => {
+  it('should push the correct answer into the answers array', () => {
+    const withAnswerArray = reformatQuestions()
+    const testQuestion = withAnswerArray[0] 
+    expect(testQuestion.answers.includes(testQuestion.correct)).toEqual(true)
+  })
+} )
+
+// // (NOT IN USE) make function to select one question from the question array to display
+// //and remove it from the question array (NOT IN USE)
+
+// export const getQuestion = () => {
+//     let thisPlayArray = createQuizArray()
+//     let randomNumber = Math.floor(Math.random() * thisPlayArray.length);
+//     let randomQuestion = (thisPlayArray[randomNumber]);
+//     thisPlayArray.splice(randomNumber)
+//     return randomQuestion
+// }
+
+
+
+//Test constants:
+
+// const [showQuiz, setShowQuiz] = useState(false);
+//   const [showAbout, setShowAbout] = useState(false);
+//   const [showNoTrivia, setShowNoTrivia] = useState(false);
+
+//   const [username, setUsername] = useState('')
+//   const [showWelcome, setShowWelcome] = useState(false);
+//   const [showAddPlayer, setShowAddPlayer] = useState(false);
+//   const [showHeaderButtons, setShowHeaderButtons] = useState(true);
+
+
+//   const handleSubmit = (event) => {
+//     event.preventDefault();
+//     setShowWelcome(true)
+//     setShowAddPlayer(false)
+//   }
+
+//   const handleShowQuiz = () => {
+//     setShowQuiz(true);
+//     setShowAbout(false);
+//     setShowNoTrivia(false);
+//   }
+
+//   const handleShowAbout = () => {
+//     setShowAbout(true);
+//     setShowQuiz(false);
+//     setShowNoTrivia(false);
+//   }
+
+//   const handleShowNoTrivia = () => {
+//     setShowAbout(false);
+//     setShowQuiz(false);
+//     setShowNoTrivia(true);
+//   }
+
+//   const handleShowAddPlayer = () => {
+//     setShowAddPlayer(true)
+//     setShowHeaderButtons(false)
+//   }
+
+//   const handleCloseQuiz = () => setShowQuiz(false);
+//   const handleCloseAbout = () => setShowAbout(false);
+//   const handleCloseNoTrivia = () => setShowNoTrivia(false);
+
+//   useEffect(() => {
+//   }, [])
 
 
 //component tests:
