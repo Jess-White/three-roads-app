@@ -31,3 +31,8 @@ export default function Question({question, handleAnswerSelected, handleGetQuest
       </div>
     );
   };
+
+  //When the map has x elements, how many answers?
+  //Test for zero values in map functions
+  //Test map function
+  //Test the answer select function

@@ -21,7 +21,7 @@ https://itnext.io/how-to-unit-test-in-react-72e911e2b8d
 
 )
 
-I'm still working on unit testing. I plan to use this project to practice writing tests for React so that my next project can benefit from integrated unit testing. To keep this work separate, I've created a new branch, 'jess', and am writing tests and building test components on that branch. 
+I'm still working on unit testing. I plan to use this project to practice writing tests for React so that my next project can benefit from integrated unit testing. To keep this work separate, I've created a new branch 'jess,' and am writing tests and building test components on that branch. 
 
 # React Hooks Documentation: 
 
