@@ -1,0 +1,74 @@
+3 11 +
+
+3 11 5 + -
+
+
+Process:
+* Look at each input
+* Is it a number? Keep going
+* Is it an operator? Do it
+* Doing an operator is take the two preceding numbers and apply the operator (in the order the numbers are encountered)
+* Basically replace the two numbers with the result
+* Until you only have one number left and no operators
+
+First input is 3, so we keep going
+Second input is 11, so we keep going
+Third input is 5, so we keep going
+Fourth input is an operator, plus sign (+) so we apply it
+So we take 11 + 5, which is 16
+So we replace "11 5 +" with "16"
+
+So our new set is 3 16
+
+Fifth input is the negative sign, so we have 3 16 -
+
+Do that operation, which is 3 - 16, which gives us -13
+
+We only have one number left, -13, that's our answer
+
+
+2 3 11 + 5 - *
+
+First input is a number 2, so we keep going
+Second input is a number 3, so we keep going
+Third input is a number 11, so we keep going
+Fourth input is our operand, +, so we add the previous two numbers: 3 + 11
+And replace 3 11 + with 14, leaving 2 14 ...
+The next input is a number 5, so we keep going
+The next operand is a - sign, so we subtract the previous number 5 from the number preceding it 14
+So then we have 2 9 ...
+Then we hit the next input, which is a *, so we multiply the two preceding numbers, 2 * 9
+So our final result is 18
+
+I'll give a string of input: "2 3 11 + 5 - *"
+
+Hit an operand
+pop once to grab the "right side" number of the equation
+pop twice to grab the "left side" number of the equation
+perform a check to evaluate the operand
+conditional
+run the operand
+take the result and add it to the end of the array using push
+return index 0, the only item in the array, the answer
+- nothing left in the string of input
+- array has only one item
+
+Need to process the input - separate it into individual numbers and operands
+Need to keep track of the length of the input
+Need to access the two most recent things
+Need to move through the input - "keep going" probably using a loop?
+Need to keep track of items that have gone before
+Need to differentiate inputs between operands and numbers
+Need to differentiate operands between + - * 
+(Number inputs are one and two-digit numbers?)
+Need to "grab" the two numbers preceding the operand
+Need to perform the operand operation on those two numbers
+For addition, need to add the two numbers
+For multiplication, need to multiply the two numbers
+For subtract, need to subtract the SECOND number grabbed from the FIRST number
+For the process, need to replace (number_one, number_two, operand) with the result of the operation
+
+
+Need to return a single number that is the product of the numbers and the operands using postfix notation
+
+

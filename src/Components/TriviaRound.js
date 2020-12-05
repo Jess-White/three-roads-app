@@ -60,12 +60,9 @@ export default function TriviaRound() {
   }
 
     function handleCurrentQuestion() {
-      console.log("waffle")
       if (index < 10) {
         setIndex(index + 1)
-        console.log(index)
         setCurrentQuestion(reformattedRound[index])
-        console.log(reformattedRound[index])
       }
       else if (index === 10) {
         handleIsFinished()

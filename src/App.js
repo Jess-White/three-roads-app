@@ -232,7 +232,6 @@ function App() {
         </div>
       ) : null}
       <Footer />
-      <Paragraph>This is my first test</Paragraph>
     </div>
   );
 }
